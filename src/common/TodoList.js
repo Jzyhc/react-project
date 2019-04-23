@@ -5,7 +5,7 @@ import store from '../store/index'
 import TodolistHtml from './todolistHtml'
 // import { DLE_ITEM_LIST, CHANGE_INPUT_VALUETWO, ADD_BTN_LIST } from '../store/actionType'
 
-import { getlistFn,getIptVal, delItem, getIptValTwo, addbtn } from '../store/actionCreators'
+import { sagaList,getIptVal, delItem, getIptValTwo, addbtn } from '../store/actionCreators'
 class TodoList extends Component{
     constructor(props){
         super(props);
@@ -25,9 +25,13 @@ class TodoList extends Component{
         store.subscribe( this.handSroreChange)
     }
     componentDidMount(){
-        const action = getlistFn()
-        store.dispatch(action)
-        console.log('222',action)
+        // const action = getlistFn()
+        // store.dispatch(action)
+        // console.log('222',action)
+        const action = sagaList()
+        console.log('22',action)
+        // store.dispatch(action)
+
     }
     handChange(e){
         // 创建一个action 对象

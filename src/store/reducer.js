@@ -1,4 +1,4 @@
-import { ADD_LIST_LIST, DLE_ITEM_LIST, CHANGE_INPUT_VALUETWO, CHANGE_INPUT_VALUE, ADD_BTN_LIST } from './actionType'
+import { ADD_TODO_LIST_REDUX,TODO_LIST_REDUX,ADD_SAGA_LIST,ADD_LIST_LIST, DLE_ITEM_LIST, CHANGE_INPUT_VALUETWO, CHANGE_INPUT_VALUE, ADD_BTN_LIST } from './actionType'
 const defaultState = {
     iptVla:'',
     list:[
@@ -10,6 +10,29 @@ const defaultState = {
 // reducer 可以接收 state 但绝不能修改state 
 export default (state = defaultState, actions)=>{
     
+    if(actions.type=== ADD_TODO_LIST_REDUX){
+        // 对之前 state 的数据 进行深拷贝
+        const newState  = JSON.parse(JSON.stringify(state))
+        newState.list.push(newState.iptVla)
+        newState.iptVla = ''
+        console.log('actions11',actions)
+        // 将改变好的数据 newState 进行 return[固定写法] 返回的是store里面
+        return newState;
+    }
+    if(actions.type=== TODO_LIST_REDUX){
+        const newState  = JSON.parse(JSON.stringify(state))
+        newState.iptVla = actions.value;
+        console.log('actions112',actions)
+        return newState;
+    }
+    if(actions.type=== ADD_SAGA_LIST){
+        // 对之前 state 的数据 进行深拷贝
+        const newState  = JSON.parse(JSON.stringify(state))
+        newState.list=actions.value;
+        console.log('actions11',actions)
+        // 将改变好的数据 newState 进行 return[固定写法] 返回的是store里面
+        return newState;
+    }
     if(actions.type=== ADD_LIST_LIST){
         // 对之前 state 的数据 进行深拷贝
         const newState  = JSON.parse(JSON.stringify(state))
